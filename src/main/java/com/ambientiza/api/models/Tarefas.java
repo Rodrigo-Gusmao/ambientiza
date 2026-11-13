@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class TarefasModel {
+public class Tarefas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTarefa;
     @NotBlank
@@ -24,7 +24,7 @@ public class TarefasModel {
     // ENUM('diário', 'semanal')
     private Tipo tipo;
 
-    public TarefasModel() {}
+    public Tarefas() {}
 
     public Long getIdTarefa() {
         return idTarefa;

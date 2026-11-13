@@ -1,7 +1,7 @@
 package com.ambientiza.api.repositories;
 
-import com.ambientiza.api.models.UsuariosModel;
+import com.ambientiza.api.models.Usuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends JpaRepository<UsuariosModel, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuarios, Long> {
 }

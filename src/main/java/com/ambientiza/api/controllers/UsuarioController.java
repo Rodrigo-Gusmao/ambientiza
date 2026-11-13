@@ -1,7 +1,9 @@
 package com.ambientiza.api.controllers;
 
-import com.ambientiza.api.models.UsuariosModel;
+import com.ambientiza.api.dtos.usuarios.ListarNomes;
+import com.ambientiza.api.models.Usuarios;
 import com.ambientiza.api.repositories.UsuarioRepository;
+import com.ambientiza.api.services.UsuarioService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,20 +11,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
-//    @PostMapping("/cadastro")
-//    public ResponseEntity<CadastroUsuario> cadastrarUsuario(@RequestBody @Valid CadastroUsuario cadastroUsuario){
-//
-//    }
-
     @GetMapping
-    public List<UsuariosModel> findAll() {
-        return usuarioRepository.findAll();
+    public List<ListarNomes> findAll() {
+        return usuarioService.findAll();
     }
 
 }

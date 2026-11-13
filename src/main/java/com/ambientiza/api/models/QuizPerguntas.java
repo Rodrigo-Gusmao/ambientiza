@@ -5,20 +5,18 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class QuizPerguntasModel {
+public class QuizPerguntas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPergunta;
     @ManyToOne @JoinColumn(name = "id_quiz")
-    private QuizModel quiz;
+    private Quiz quiz;
     @NotBlank
     private String enunciado;
     @NotBlank
-    // rever tema - criar tebela propria
-    private String tema;
     // ENUM('facil', 'medio', 'dificil')
     private NivelDificuldade nivelDificuldade;
 
-    public QuizPerguntasModel() {}
+    public QuizPerguntas() {}
 
     public Long getIdPergunta() {
         return idPergunta;
@@ -28,11 +26,11 @@ public class QuizPerguntasModel {
         this.idPergunta = idPergunta;
     }
 
-    public QuizModel getQuiz() {
+    public Quiz getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(QuizModel quiz) {
+    public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
 
@@ -42,14 +40,6 @@ public class QuizPerguntasModel {
 
     public void setEnunciado(String enunciado) {
         this.enunciado = enunciado;
-    }
-
-    public String getTema() {
-        return tema;
-    }
-
-    public void setTema(String tema) {
-        this.tema = tema;
     }
 
     public NivelDificuldade getNivelDificuldade() {

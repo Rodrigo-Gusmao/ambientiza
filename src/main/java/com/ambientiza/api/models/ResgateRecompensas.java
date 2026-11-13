@@ -5,31 +5,31 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class ResgasteRecompensasModel {
+public class ResgateRecompensas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResgate;
     @OneToOne @JoinColumn(name = "id_usuario", nullable = false, unique = true)
-    private UsuariosModel usuario;
+    private Usuarios usuario;
     @ManyToOne @JoinColumn(name = "id_recompensa", nullable = false)
-    private RecompensasModel recompensa;
+    private Recompensas recompensa;
     private BigDecimal pontos_gastos;
     private BigDecimal data_resgate;
 
-    public ResgasteRecompensasModel() {}
+    public ResgateRecompensas() {}
 
-    public UsuariosModel getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuariosModel usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 
-    public RecompensasModel getRecompensa() {
+    public Recompensas getRecompensa() {
         return recompensa;
     }
 
-    public void setRecompensa(RecompensasModel recompensa) {
+    public void setRecompensa(Recompensas recompensa) {
         this.recompensa = recompensa;
     }
 

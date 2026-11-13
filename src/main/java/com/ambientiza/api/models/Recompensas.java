@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="recompensas")
-public class RecompensasModel {
+public class Recompensas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRecompensa;
@@ -23,7 +23,7 @@ public class RecompensasModel {
     @NotNull @PositiveOrZero
     private BigDecimal estoque;
 
-    public RecompensasModel() {}
+    public Recompensas() {}
 
     public Long getIdRecompensa() {
         return idRecompensa;

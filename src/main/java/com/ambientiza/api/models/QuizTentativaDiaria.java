@@ -8,13 +8,13 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
 @Entity
-public class QuizTentativaDiariaModel {
+public class QuizTentativaDiaria {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idQuizTentativaDiaria;
     @ManyToOne @JoinColumn(name = "id_quiz", nullable = false)
-    private QuizModel quiz;
+    private Quiz quiz;
     @OneToOne @JoinColumn(name = "id_usuario", nullable = false)
-    private UsuariosModel usuario;
+    private Usuarios usuario;
     @NotNull @PastOrPresent
     private LocalDate dataJogada;
     @NotNull @PositiveOrZero
@@ -22,7 +22,7 @@ public class QuizTentativaDiariaModel {
     @NotNull @PositiveOrZero
     private Integer pontosGanhos;
 
-    public QuizTentativaDiariaModel() {}
+    public QuizTentativaDiaria() {}
 
     public Long getIdQuizTentativaDiaria() {
         return idQuizTentativaDiaria;
@@ -32,19 +32,19 @@ public class QuizTentativaDiariaModel {
         this.idQuizTentativaDiaria = idQuizTentativaDiaria;
     }
 
-    public QuizModel getQuiz() {
+    public Quiz getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(QuizModel quiz) {
+    public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
 
-    public UsuariosModel getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuariosModel usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 

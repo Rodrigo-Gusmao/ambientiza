@@ -1,26 +1,26 @@
 package com.ambientiza.api.models;
 
+import com.ambientiza.api.enums.Temas;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name="quiz")
-public class QuizModel {
+public class Quiz {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idQuiz;
     @NotBlank
     private String titulo;
     @NotBlank
-    private String temaGeral;
+    private Temas tema;
     @NotNull @FutureOrPresent
     private LocalDate dataDispoivel;
 
-    public QuizModel() {}
+    public Quiz() {}
 
     public Long getIdQuiz() {
         return idQuiz;
@@ -38,12 +38,12 @@ public class QuizModel {
         this.titulo = titulo;
     }
 
-    public String getTemaGeral() {
-        return temaGeral;
+    public Temas getTemaGeral() {
+        return tema;
     }
 
-    public void setTemaGeral(String temaGeral) {
-        this.temaGeral = temaGeral;
+    public void setTemaGeral(Temas temaGeral) {
+        this.tema = temaGeral;
     }
 
     public LocalDate getDataDispoivel() {

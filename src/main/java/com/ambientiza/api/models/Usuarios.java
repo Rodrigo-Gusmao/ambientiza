@@ -1,22 +1,20 @@
 package com.ambientiza.api.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="usuarios")
-public class UsuariosModel {
+public class Usuarios {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    @OneToOne(cascade = CascadeType.ALL)
-    private SaldoModel saldo;
+    @NotBlank @PositiveOrZero
+    private BigDecimal saldo;
     @NotBlank
     private String nome;
     @NotBlank
@@ -30,7 +28,7 @@ public class UsuariosModel {
     @NotNull @PastOrPresent
     private LocalDate criadoEm;
 
-    public UsuariosModel() {}
+    public Usuarios() {}
 
     public LocalDate getCriadoEm() {
         return criadoEm;
@@ -80,11 +78,11 @@ public class UsuariosModel {
         this.nome = nome;
     }
 
-    public SaldoModel getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(SaldoModel saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 

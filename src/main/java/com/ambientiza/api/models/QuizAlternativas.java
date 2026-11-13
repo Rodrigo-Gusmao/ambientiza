@@ -5,17 +5,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class QuizAlternativasModel {
+public class QuizAlternativas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idQuizAlternativas;
     @ManyToOne @JoinColumn(name = "id_perguntas")
-    private QuizPerguntasModel quizPerguntas;
+    private QuizPerguntas quizPerguntas;
     @NotBlank
     private String texto;
     @NotNull
     private Boolean correta;
 
-    public QuizAlternativasModel() {}
+    public QuizAlternativas() {}
 
     public Long getIdQuizAlternativas() {
         return idQuizAlternativas;
@@ -25,11 +25,11 @@ public class QuizAlternativasModel {
         this.idQuizAlternativas = idQuizAlternativas;
     }
 
-    public QuizPerguntasModel getQuizPerguntas() {
+    public QuizPerguntas getQuizPerguntas() {
         return quizPerguntas;
     }
 
-    public void setQuizPerguntas(QuizPerguntasModel quizPerguntas) {
+    public void setQuizPerguntas(QuizPerguntas quizPerguntas) {
         this.quizPerguntas = quizPerguntas;
     }
 

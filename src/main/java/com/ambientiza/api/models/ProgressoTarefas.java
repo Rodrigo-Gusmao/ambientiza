@@ -9,20 +9,20 @@ import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Entity
-public class ProgressoTarefasModel {
+public class ProgressoTarefas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProgresso;
     @OneToOne @JoinColumn(name = "id_usuario", nullable = false)
-    private UsuariosModel usuario;
+    private Usuarios usuario;
     @OneToOne @JoinColumn(name = "id_tarefa", nullable = false)
-    private TarefasModel tarefa;
+    private Tarefas tarefa;
     @NotNull @PastOrPresent
     private LocalDate dataConclusao;
     @NotBlank
     //  ENUM('pendente', 'em_andamento', 'concluído')
     private Status status;
 
-    public ProgressoTarefasModel() {}
+    public ProgressoTarefas() {}
 
     public Long getIdProgresso() {
         return idProgresso;
@@ -32,19 +32,19 @@ public class ProgressoTarefasModel {
         this.idProgresso = idProgresso;
     }
 
-    public UsuariosModel getUsuario() {
+    public Usuarios getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuariosModel usuario) {
+    public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
 
-    public TarefasModel getTarefa() {
+    public Tarefas getTarefa() {
         return tarefa;
     }
 
-    public void setTarefa(TarefasModel tarefa) {
+    public void setTarefa(Tarefas tarefa) {
         this.tarefa = tarefa;
     }
 
