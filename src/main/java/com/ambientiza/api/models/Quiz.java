@@ -15,10 +15,11 @@ public class Quiz {
     private Long idQuiz;
     @NotBlank
     private String titulo;
-    @NotBlank
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Temas tema;
     @NotNull @FutureOrPresent
-    private LocalDate dataDispoivel;
+    private LocalDate dataDisponivel;
 
     public Quiz() {}
 
@@ -38,19 +39,19 @@ public class Quiz {
         this.titulo = titulo;
     }
 
-    public Temas getTemaGeral() {
+    public Temas getTema() {
         return tema;
     }
 
-    public void setTemaGeral(Temas temaGeral) {
+    public void setTema(Temas temaGeral) {
         this.tema = temaGeral;
     }
 
-    public LocalDate getDataDispoivel() {
-        return dataDispoivel;
+    public LocalDate getDataDisponivel() {
+        return dataDisponivel;
     }
 
-    public void setDataDispoivel(LocalDate dataDispoivel) {
-        this.dataDispoivel = dataDispoivel;
+    public void setDataDisponivel(LocalDate dataDispoivel) {
+        this.dataDisponivel = dataDispoivel;
     }
 }

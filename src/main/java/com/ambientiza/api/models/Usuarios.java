@@ -13,7 +13,7 @@ public class Usuarios {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    @NotBlank @PositiveOrZero
+    @NotNull @PositiveOrZero
     private BigDecimal saldo;
     @NotBlank
     private String nome;
@@ -21,22 +21,12 @@ public class Usuarios {
     private String email;
     @NotBlank
     private String senhaHash;
-    @NotNull @PastOrPresent
-    private LocalDate ultimaAtividade;
     @NotNull @PositiveOrZero
     private Integer ofensivaAtual;
-    @NotNull @PastOrPresent
-    private LocalDate criadoEm;
+
 
     public Usuarios() {}
 
-    public LocalDate getCriadoEm() {
-        return criadoEm;
-    }
-
-    public void setCriadoEm(LocalDate criadoEm) {
-        this.criadoEm = criadoEm;
-    }
 
     public Integer getOfensivaAtual() {
         return ofensivaAtual;
@@ -44,14 +34,6 @@ public class Usuarios {
 
     public void setOfensivaAtual(Integer ofensivaAtual) {
         this.ofensivaAtual = ofensivaAtual;
-    }
-
-    public LocalDate getUltimaAtividade() {
-        return ultimaAtividade;
-    }
-
-    public void setUltimaAtividade(LocalDate ultimaAtividade) {
-        this.ultimaAtividade = ultimaAtividade;
     }
 
     public String getSenhaHash() {
