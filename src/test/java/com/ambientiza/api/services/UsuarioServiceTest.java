@@ -42,7 +42,7 @@ class UsuarioServiceTest {
         usuarioExemplo.setNome("Rodrigo Silva");
         usuarioExemplo.setEmail("rodrigo@email.com");
         // Hash de "senha123" usando SHA-256
-        usuarioExemplo.setSenhaHash("55525e1b3ab5b27dafb13233e6524f1499d07d187176574c838ac6b0736e3810");
+        usuarioExemplo.setSenhaHash("55a5e9e78207b4df8699d60886fa070079463547b095d1a05bc719bb4e6cd251");
         usuarioExemplo.setSaldo(new BigDecimal("100.00"));
         usuarioExemplo.setOfensivaAtual(3);
         usuarioExemplo.setUltimaAtividade(LocalDate.now().minusDays(1));

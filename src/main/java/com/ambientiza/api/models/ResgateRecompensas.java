@@ -1,21 +1,56 @@
 package com.ambientiza.api.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "resgate_recompensas")
 public class ResgateRecompensas {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idResgate;
-    @OneToOne @JoinColumn(name = "id_usuario", nullable = false, unique = true)
-    private Usuarios usuario;
-    @ManyToOne @JoinColumn(name = "id_recompensa", nullable = false)
-    private Recompensas recompensa;
-    private BigDecimal pontos_gastos;
-    private BigDecimal data_resgate;
 
-    public ResgateRecompensas() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_resgate")
+    private Long idResgate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuarios usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_recompensa", nullable = false)
+    private Recompensas recompensa;
+
+    @NotNull
+    @PositiveOrZero
+    @Column(name = "pontos_gastos", nullable = false)
+    private BigDecimal pontosGastos;
+
+    @NotNull
+    @Column(name = "data_resgate", nullable = false)
+    private LocalDateTime dataResgate;
+
+    public ResgateRecompensas() {
+        this.dataResgate = LocalDateTime.now();
+    }
+
+    public ResgateRecompensas(Usuarios usuario, Recompensas recompensa, BigDecimal pontosGastos) {
+        this.usuario = usuario;
+        this.recompensa = recompensa;
+        this.pontosGastos = pontosGastos;
+        this.dataResgate = LocalDateTime.now();
+    }
+
+    public Long getIdResgate() {
+        return idResgate;
+    }
+
+    public void setIdResgate(Long idResgate) {
+        this.idResgate = idResgate;
+    }
 
     public Usuarios getUsuario() {
         return usuario;
@@ -33,27 +68,28 @@ public class ResgateRecompensas {
         this.recompensa = recompensa;
     }
 
-    public Long getIdResgate() {
-        return idResgate;
+    public BigDecimal getPontosGastos() {
+        return pontosGastos;
     }
 
-    public void setIdResgate(Long idResgate) {
-        this.idResgate = idResgate;
+    public void setPontosGastos(BigDecimal pontosGastos) {
+        this.pontosGastos = pontosGastos;
     }
 
+    public LocalDateTime getDataResgate() {
+        return dataResgate;
+    }
+
+    public void setDataResgate(LocalDateTime dataResgate) {
+        this.dataResgate = dataResgate;
+    }
+
+    // Métodos alias para compatibilidade com o formato original
     public BigDecimal getPontos_gastos() {
-        return pontos_gastos;
+        return pontosGastos;
     }
 
-    public void setPontos_gastos(BigDecimal pontos_gastos) {
-        this.pontos_gastos = pontos_gastos;
-    }
-
-    public BigDecimal getData_resgate() {
-        return data_resgate;
-    }
-
-    public void setData_resgate(BigDecimal data_resgate) {
-        this.data_resgate = data_resgate;
+    public void setPontos_gastos(BigDecimal pontosGastos) {
+        this.pontosGastos = pontosGastos;
     }
 }
