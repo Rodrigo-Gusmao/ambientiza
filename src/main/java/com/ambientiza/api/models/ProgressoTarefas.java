@@ -18,7 +18,7 @@ public class ProgressoTarefas {
     private Tarefas tarefa;
     @NotNull @PastOrPresent
     private LocalDate dataConclusao;
-    @NotBlank
+    @NotNull
     //  ENUM('pendente', 'em_andamento', 'concluído')
     private Status status;
 

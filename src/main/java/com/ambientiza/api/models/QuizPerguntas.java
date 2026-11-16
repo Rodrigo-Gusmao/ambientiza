@@ -4,6 +4,8 @@ import com.ambientiza.api.enums.NivelDificuldade;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import jakarta.validation.constraints.NotNull;
+
 @Entity
 public class QuizPerguntas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,7 +14,7 @@ public class QuizPerguntas {
     private Quiz quiz;
     @NotBlank
     private String enunciado;
-    @NotBlank
+    @NotNull
     // ENUM('facil', 'medio', 'dificil')
     private NivelDificuldade nivelDificuldade;
 

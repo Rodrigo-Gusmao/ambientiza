@@ -15,7 +15,7 @@ public class Quiz {
     private Long idQuiz;
     @NotBlank
     private String titulo;
-    @NotBlank
+    @NotNull
     private Temas tema;
     @NotNull @FutureOrPresent
     private LocalDate dataDispoivel;

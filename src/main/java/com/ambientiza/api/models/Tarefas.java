@@ -20,7 +20,7 @@ public class Tarefas {
     private String descricao;
     @NotNull
     private BigDecimal pontosRecompensa;
-    @NotBlank
+    @NotNull
     // ENUM('diário', 'semanal')
     private Tipo tipo;
 
