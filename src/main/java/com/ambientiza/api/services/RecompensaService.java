@@ -1,6 +1,17 @@
 package com.ambientiza.api.services;
 
-import com.ambientiza.api.dtos.recompensas.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ambientiza.api.dtos.recompensas.AtualizarRecompensa;
+import com.ambientiza.api.dtos.recompensas.CadastroRecompensa;
+import com.ambientiza.api.dtos.recompensas.RecompensaResponse;
+import com.ambientiza.api.dtos.recompensas.ResgateRequest;
+import com.ambientiza.api.dtos.recompensas.ResgateResponse;
 import com.ambientiza.api.exceptions.EstoqueInsuficienteException;
 import com.ambientiza.api.exceptions.RecursoNaoEncontradoException;
 import com.ambientiza.api.exceptions.RegraDeNegocioException;
@@ -11,12 +22,6 @@ import com.ambientiza.api.models.Usuarios;
 import com.ambientiza.api.repositories.RecompensasRepository;
 import com.ambientiza.api.repositories.ResgateRecompensaRepository;
 import com.ambientiza.api.repositories.UsuarioRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class RecompensaService {
