@@ -1,127 +1,44 @@
 package com.ambientiza.api.models;
 
-import java.math.BigDecimal;
+import com.ambientiza.api.enums.Papel;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.PositiveOrZero;
-
 @Entity
-@Table(name = "usuarios")
+@Table(name="usuarios")
 public class Usuarios {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-
+    @NotNull @PositiveOrZero
+    private Integer saldo = 0;
     @NotBlank
-    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
-
-    @NotBlank
-    @Email
-    @Column(name = "email", length = 100, nullable = false, unique = true)
+    @NotBlank @Email
+    @Column(nullable = false, unique = true)
     private String email;
-
     @NotBlank
-    @Column(name = "senha_hash", length = 255, nullable = false)
     private String senhaHash;
-
-    @NotNull
-    @PositiveOrZero
-    @Column(name = "saldo", precision = 10, scale = 2, nullable = false)
-    private BigDecimal saldo = BigDecimal.ZERO;
-
-    @NotNull
-    @PositiveOrZero
-    @Column(name = "ofensiva_atual", nullable = false)
-    private Integer ofensivaAtual = 0;
-
+    @NotNull @Enumerated(EnumType.STRING)
+    private Papel papel = Papel.USUARIO;
+    // null enquanto o usuário não tiver nenhuma atividade
     @PastOrPresent
-    @Column(name = "ultima_atividade")
     private LocalDate ultimaAtividade;
-
-    @NotNull
-    @PastOrPresent
-    @Column(name = "criado_em", nullable = false)
+    @NotNull @PositiveOrZero
+    private Integer ofensivaAtual = 0;
+    @NotNull @PastOrPresent
     private LocalDate criadoEm;
 
-    public Usuarios() {
-        this.saldo = BigDecimal.ZERO;
-        this.ofensivaAtual = 0;
-        this.criadoEm = LocalDate.now();
-        this.ultimaAtividade = LocalDate.now();
+    public Usuarios() {}
+
+    public LocalDate getCriadoEm() {
+        return criadoEm;
     }
 
-    public Usuarios(String nome, String email, String senhaHash) {
-        this();
-        this.nome = nome;
-        this.email = email;
-        this.senhaHash = senhaHash;
-    }
-
-    @PrePersist
-    public void prePersist() {
-        if (this.criadoEm == null) {
-            this.criadoEm = LocalDate.now();
-        }
-        if (this.saldo == null) {
-            this.saldo = BigDecimal.ZERO;
-        }
-        if (this.ofensivaAtual == null) {
-            this.ofensivaAtual = 0;
-        }
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenhaHash() {
-        return senhaHash;
-    }
-
-    public void setSenhaHash(String senhaHash) {
-        this.senhaHash = senhaHash;
-    }
-
-    public BigDecimal getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    public void setCriadoEm(LocalDate criadoEm) {
+        this.criadoEm = criadoEm;
     }
 
     public Integer getOfensivaAtual() {
@@ -140,11 +57,51 @@ public class Usuarios {
         this.ultimaAtividade = ultimaAtividade;
     }
 
-    public LocalDate getCriadoEm() {
-        return criadoEm;
+    public String getSenhaHash() {
+        return senhaHash;
     }
 
-    public void setCriadoEm(LocalDate criadoEm) {
-        this.criadoEm = criadoEm;
+    public void setSenhaHash(String senhaHash) {
+        this.senhaHash = senhaHash;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Integer saldo) {
+        this.saldo = saldo;
+    }
+
+    public Papel getPapel() {
+        return papel;
+    }
+
+    public void setPapel(Papel papel) {
+        this.papel = papel;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
