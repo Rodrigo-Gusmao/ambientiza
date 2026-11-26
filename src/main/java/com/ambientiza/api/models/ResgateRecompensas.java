@@ -4,53 +4,22 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "resgate_recompensas")
 public class ResgateRecompensas {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_resgate")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResgate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @ManyToOne(optional = false) @JoinColumn(name = "id_usuario", nullable = false)
     private Usuarios usuario;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_recompensa", nullable = false)
+    @ManyToOne(optional = false) @JoinColumn(name = "id_recompensa", nullable = false)
     private Recompensas recompensa;
-
+    @NotNull @PositiveOrZero
+    private Integer pontosGastos;
     @NotNull
-    @PositiveOrZero
-    @Column(name = "pontos_gastos", nullable = false)
-    private BigDecimal pontosGastos;
+    private LocalDate dataResgate;
 
-    @NotNull
-    @Column(name = "data_resgate", nullable = false)
-    private LocalDateTime dataResgate;
-
-    public ResgateRecompensas() {
-        this.dataResgate = LocalDateTime.now();
-    }
-
-    public ResgateRecompensas(Usuarios usuario, Recompensas recompensa, BigDecimal pontosGastos) {
-        this.usuario = usuario;
-        this.recompensa = recompensa;
-        this.pontosGastos = pontosGastos;
-        this.dataResgate = LocalDateTime.now();
-    }
-
-    public Long getIdResgate() {
-        return idResgate;
-    }
-
-    public void setIdResgate(Long idResgate) {
-        this.idResgate = idResgate;
-    }
+    public ResgateRecompensas() {}
 
     public Usuarios getUsuario() {
         return usuario;
@@ -68,28 +37,27 @@ public class ResgateRecompensas {
         this.recompensa = recompensa;
     }
 
-    public BigDecimal getPontosGastos() {
+    public Long getIdResgate() {
+        return idResgate;
+    }
+
+    public void setIdResgate(Long idResgate) {
+        this.idResgate = idResgate;
+    }
+
+    public Integer getPontosGastos() {
         return pontosGastos;
     }
 
-    public void setPontosGastos(BigDecimal pontosGastos) {
+    public void setPontosGastos(Integer pontosGastos) {
         this.pontosGastos = pontosGastos;
     }
 
-    public LocalDateTime getDataResgate() {
+    public LocalDate getDataResgate() {
         return dataResgate;
     }
 
-    public void setDataResgate(LocalDateTime dataResgate) {
+    public void setDataResgate(LocalDate dataResgate) {
         this.dataResgate = dataResgate;
-    }
-
-    // Métodos alias para compatibilidade com o formato original
-    public BigDecimal getPontos_gastos() {
-        return pontosGastos;
-    }
-
-    public void setPontos_gastos(BigDecimal pontosGastos) {
-        this.pontosGastos = pontosGastos;
     }
 }

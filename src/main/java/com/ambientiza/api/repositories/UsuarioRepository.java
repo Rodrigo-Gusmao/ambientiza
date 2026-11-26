@@ -1,19 +1,19 @@
 package com.ambientiza.api.repositories;
 
 import com.ambientiza.api.models.Usuarios;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-@Repository
 public interface UsuarioRepository extends JpaRepository<Usuarios, Long> {
+    Optional<Usuarios> findByEmailIgnoreCase(String email);
 
-    Optional<Usuarios> findByEmail(String email);
+    boolean existsByEmailIgnoreCase(String email);
 
-    Optional<Usuarios> findByNome(String nome);
-
-    boolean existsByEmail(String email);
-
-    boolean existsByNome(String nome);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select u from Usuarios u where u.idUsuario = :id")
+    Optional<Usuarios> findByIdParaAtualizar(Long id);
 }

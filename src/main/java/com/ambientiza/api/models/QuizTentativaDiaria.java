@@ -8,65 +8,29 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "quiz_tentativa_diaria", uniqueConstraints = {
-        @UniqueConstraint(name = "uq_usuario_quiz_dia", columnNames = {"id_usuario", "id_quiz", "data_jogada"})
-})
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_usuario", "id_quiz"}))
 public class QuizTentativaDiaria {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tentativa")
-    private Long idTentativa;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_quiz", nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idQuizTentativaDiaria;
+    @ManyToOne(optional = false) @JoinColumn(name = "id_quiz", nullable = false)
     private Quiz quiz;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @ManyToOne(optional = false) @JoinColumn(name = "id_usuario", nullable = false)
     private Usuarios usuario;
-
-    @NotNull
-    @PastOrPresent
-    @Column(name = "data_jogada", nullable = false)
+    @NotNull @PastOrPresent
     private LocalDate dataJogada;
-
-    @NotNull
-    @Column(name = "acerto", nullable = false)
-    private Boolean acerto;
-
-    @NotNull
-    @PositiveOrZero
-    @Column(name = "pontos_ganhos", nullable = false)
+    @NotNull @PositiveOrZero
+    private Integer acerto;
+    @NotNull @PositiveOrZero
     private Integer pontosGanhos;
 
-    public QuizTentativaDiaria() {
-        this.dataJogada = LocalDate.now();
-    }
+    public QuizTentativaDiaria() {}
 
-    public QuizTentativaDiaria(Quiz quiz, Usuarios usuario, Boolean acerto, Integer pontosGanhos) {
-        this.quiz = quiz;
-        this.usuario = usuario;
-        this.dataJogada = LocalDate.now();
-        this.acerto = acerto;
-        this.pontosGanhos = pontosGanhos != null ? pontosGanhos : 0;
-    }
-
-    public Long getIdTentativa() {
-        return idTentativa;
-    }
-
-    public void setIdTentativa(Long idTentativa) {
-        this.idTentativa = idTentativa;
-    }
-
-    // Aliases para compatibilidade retroativa
     public Long getIdQuizTentativaDiaria() {
-        return idTentativa;
+        return idQuizTentativaDiaria;
     }
 
     public void setIdQuizTentativaDiaria(Long idQuizTentativaDiaria) {
-        this.idTentativa = idQuizTentativaDiaria;
+        this.idQuizTentativaDiaria = idQuizTentativaDiaria;
     }
 
     public Quiz getQuiz() {
@@ -93,11 +57,11 @@ public class QuizTentativaDiaria {
         this.dataJogada = dataJogada;
     }
 
-    public Boolean getAcerto() {
+    public Integer getAcerto() {
         return acerto;
     }
 
-    public void setAcerto(Boolean acerto) {
+    public void setAcerto(Integer acerto) {
         this.acerto = acerto;
     }
 
